@@ -144,6 +144,7 @@ function getBook(id) {
 }
 
 
+/*
 // Destructuring :
 
 let book = getBook(2)
@@ -235,3 +236,113 @@ function getTotalReviewsCount(book){
 }
 
 console.log(getTotalReviewsCount(book));
+
+*/
+
+/*
+
+//-------------------------------------
+//Array Map Method :
+
+let books = getBooks();
+books;
+
+
+//Ex1:
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+// Ex2:
+const titles = books.map((book) => book.title);
+console.log(titles);
+
+
+//-------------------------------
+// The Filter Array : 
+
+// Ex1 :
+const longBooks = books.filter((book) => book.pages > 500).map(book => book.title)
+longBooks;
+
+// Ex 2:
+const longBooksWithMovie = books.filter((book) => book.pages > 500).filter((book) => book.hasMovieAdaptation)
+longBooksWithMovie;
+
+// Ex3:
+const adventureBooks = books.filter((book) => book.genres.includes("adventure")).map(book => book.title);
+adventureBooks;
+
+//-----------------------
+//The Reduce Method:
+
+//Ex1:
+const pageAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+pageAllBooks;
+
+
+//-----------------------
+//The Sort Method
+const arr = [3, 6, 9, 1, 7];
+
+//💥 our array change on every sort we do  //important to add a copy usin slice()
+//Solution is to add a slice to make a copy of the array and apply the sort on it 
+const sortedCopy = arr.slice().sort((a, b) => a - b)
+sortedCopy;
+arr;
+// Ex1:
+const asc = arr.sort((a, b) => a - b);
+asc;
+arr;
+
+const desc = arr.sort((a, b) => b - a);
+desc;
+arr;
+
+
+//Ex 2: Sort Pages
+const sortedPages = books.slice().sort((a, b) => a.pages - b.pages);
+sortedPages;
+
+
+//Working with Immutable Arrays :
+
+const newBook = {
+    id: 6,
+    title: "Bad Boys for life",
+    author: "Will Smith",
+}
+
+// add a book to an array :
+const addBook = [...books, newBook];
+addBook
+
+// delet a book from an array :
+const deletBook = addBook.filter((book) => book.id !== 3);
+deletBook;
+
+// update a book from an array :
+const updateBook = deletBook.map(book => book.id === 1 ? {...book,pages: 1} : book)
+updateBook
+
+*/
+
+// Aysnchronous Javascript : Promises :
+/*
+const api = "https://jsonplaceholder.typicode.com"
+fetch(`${api}/todos`)
+.then((res)=> res.json())
+.then((data)=> console.log(data));
+
+console.log("Dahbi")
+*/ 
+
+// Asnc / Await:
+const api = "https://jsonplaceholder.typicode.com"
+async function getTodos(){
+    const res = await fetch(`${api}/todos`)
+    const data =  await res.json();
+
+    console.log(data)
+}
+
+getTodos()
